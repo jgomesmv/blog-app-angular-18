@@ -28,7 +28,7 @@ export class CreatePostComponent {
   }
 
   // Getter for easier access to form controls in template
-  get f() {
+  get formControls() {
     return this.postForm.controls;
   }
 
@@ -39,8 +39,8 @@ export class CreatePostComponent {
     }
 
     const newPost: Partial<Post> = {
-      title: this.f['title'].value,
-      body: this.f['body'].value,
+      title: this.formControls['title'].value,
+      body: this.formControls['body'].value,
       userId: 1 // Assuming userId is required
     };
 
