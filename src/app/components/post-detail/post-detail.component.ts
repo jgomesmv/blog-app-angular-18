@@ -1,4 +1,4 @@
-import { Component, Signal } from '@angular/core';
+import { Component, inject, Signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../../services/post.service';
 import { Post } from '../../types/models/post.model';
@@ -13,14 +13,14 @@ import { toSignal } from '@angular/core/rxjs-interop';
   imports: [CommonModule],
 })
 export class PostDetailComponent {
-  post: Signal<Post | null>;
+  private route = inject(ActivatedRoute);
+  private postService = inject(PostService);
 
-  constructor(
-    private route: ActivatedRoute,
-    private postService: PostService,
-  ) {
+  post = this.getPost();
+
+  private getPost(): Signal<Post | null> {
     const id = +this.route.snapshot.params['id'];
     // Convert the Observable to a Signal
-    this.post = toSignal(this.postService.getById(id), { initialValue: null });
+    return toSignal(this.postService.getById(id), { initialValue: null });
   }
 }
