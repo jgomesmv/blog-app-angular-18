@@ -6,5 +6,3 @@ export interface PostListResponse {
   skip: number;
   limit: number;
 }
-
-export interface PostDetailResponse extends Post {}
