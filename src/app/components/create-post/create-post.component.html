@@ -1,1 +1,43 @@
-<p>create-post works!</p>
+<form [formGroup]="postForm" (ngSubmit)="onSubmit()" class="create-post">
+  <div class="create-post__field">
+    <label for="title">Title</label>
+    <input
+      id="title"
+      formControlName="title"
+      [ngClass]="{'is-invalid': f['title'].touched && f['title'].invalid}"
+      required
+    />
+    @if(f['title'].touched && f['title'].invalid) {
+      <div class="error">
+        @if(f['title'].errors?.['required']){
+          <small>Title is required.</small>
+        }
+        @if(f['title'].errors?.['minlength']){
+          <small>Title must be at least 5 characters long.</small>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="create-post__field">
+    <label for="body">Body</label>
+    <textarea
+      id="body"
+      formControlName="body"
+      [ngClass]="{'is-invalid': f['body'].touched && f['body'].invalid}"
+      required
+    ></textarea>
+    @if(f['body'].touched && f['body'].invalid) {
+      <div class="error">
+        @if(f['body'].errors?.['required']){
+          <small>Body is required.</small>
+        }
+        @if(f['body'].errors?.['minlength']){
+          <small>Body must be at least 10 characters long.</small>
+        }
+      </div>
+    }
+  </div>
+
+  <button type="submit" class="create-post__button" [disabled]="postForm.invalid">Create Post</button>
+</form>
