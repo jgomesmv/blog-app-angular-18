@@ -5,13 +5,13 @@
       id="title"
       formControlName="title"
       [ngClass]="{
-        'is-invalid':
+        'create-post__field--invalid':
           formControls['title'].touched && formControls['title'].invalid,
       }"
       required
     />
     @if (formControls["title"].touched && formControls["title"].invalid) {
-      <div class="error">
+      <div class="create-post__fieldError">
         @if (formControls["title"].errors?.["required"]) {
           <small>Title is required.</small>
         }
@@ -28,13 +28,13 @@
       id="body"
       formControlName="body"
       [ngClass]="{
-        'is-invalid':
+        'create-post__field--invalid':
           formControls['body'].touched && formControls['body'].invalid,
       }"
       required
     ></textarea>
     @if (formControls["body"].touched && formControls["body"].invalid) {
-      <div class="error">
+      <div class="create-post__fieldError">
         @if (formControls["body"].errors?.["required"]) {
           <small>Body is required.</small>
         }

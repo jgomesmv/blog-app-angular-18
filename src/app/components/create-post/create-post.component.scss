@@ -15,15 +15,15 @@
       outline: none;
     }
 
-    .is-invalid {
+    &--invalid {
       border-color: red;
     }
+  }
 
-    .error {
+  &__fieldError {
       color: red;
       font-size: 0.8rem;
       margin-top: 5px;
-    }
   }
 
   &__button {
