@@ -14,13 +14,18 @@ import { Post } from '../../types/models/post.model';
   imports: [CommonModule, ReactiveFormsModule],
 })
 export class CreatePostComponent {
-  postForm: FormGroup = this.createPostForm();
+  postForm: FormGroup;
 
   constructor(
-    private fb: FormBuilder,
+    private formBuilder: FormBuilder,
     private postService: PostService,
     private router: Router
-  ) {}
+  ) {
+    this.postForm = this.formBuilder.group({
+      title: ['', [Validators.required, Validators.minLength(5)]],
+      body: ['', [Validators.required, Validators.minLength(10)]]
+    });
+  }
 
   // Getter for easier access to form controls in template
   get f() {
@@ -29,7 +34,6 @@ export class CreatePostComponent {
 
   onSubmit(): void {
     if (this.postForm.invalid) {
-      // If the form is invalid, mark all controls as touched to display errors
       this.postForm.markAllAsTouched();
       return;
     }
@@ -42,13 +46,6 @@ export class CreatePostComponent {
 
     this.postService.create(newPost).subscribe(() => {
       this.router.navigate(['/']);
-    });
-  }
-
-  private createPostForm(): FormGroup {
-    return  this.fb.group({
-      title: ['', [Validators.required, Validators.minLength(5)]],
-      body: ['', [Validators.required, Validators.minLength(10)]]
     });
   }
 }

@@ -1,13 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 
-export abstract class GenericApiService<T> {
-  constructor(protected http: HttpClient, private baseApiUrl: string) {}
+export abstract class GenericApiService<R, T> {
+  protected baseApiUrl: string = '';
+  protected createUrl?: string;
+
+  constructor(protected http: HttpClient) {}
 
   // Fetch all items, but delegate response processing to the child class
   getAll(): Observable<T[]> {
-    return this.http.get(this.baseApiUrl).pipe(
-      map((response) => this.extractItems(response)) // Delegate extraction to the child class
+    return this.http.get<R>(this.baseApiUrl).pipe(
+      map((response: R) => this.extractItems(response)) // Explicitly type the response as R
     );
   }
 
@@ -18,7 +21,8 @@ export abstract class GenericApiService<T> {
 
   // Create a new item
   create(item: Partial<T>): Observable<T> {
-    return this.http.post<T>(this.baseApiUrl, item);
+    const url = this.createUrl ? this.createUrl : this.baseApiUrl;
+    return this.http.post<T>(url, item);
   }
 
   // Update an existing item by ID
@@ -32,5 +36,5 @@ export abstract class GenericApiService<T> {
   }
 
   // Abstract method to extract items from the response
-  protected abstract extractItems(response: any): T[];
+  protected abstract extractItems(response: R): T[];
 }
