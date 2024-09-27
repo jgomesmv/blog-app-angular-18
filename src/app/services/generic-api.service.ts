@@ -10,7 +10,7 @@ export abstract class GenericApiService<R, T> {
   // Fetch all items, but delegate response processing to the child class
   getAll(): Observable<T[]> {
     return this.http.get<R>(this.baseApiUrl).pipe(
-      map((response: R) => this.extractItems(response)) // Explicitly type the response as R
+      map((response: R) => this.extractItems(response)), // Explicitly type the response as R
     );
   }
 

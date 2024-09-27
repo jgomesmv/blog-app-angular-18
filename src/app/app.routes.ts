@@ -6,5 +6,5 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
 export const routes: Routes = [
   { path: '', component: PostListComponent },
   { path: 'post/:id', component: PostDetailComponent },
-  { path: 'create', component: CreatePostComponent }
+  { path: 'create', component: CreatePostComponent },
 ];

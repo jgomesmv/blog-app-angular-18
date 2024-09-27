@@ -4,15 +4,18 @@
     <input
       id="title"
       formControlName="title"
-      [ngClass]="{'is-invalid': formControls['title'].touched && formControls['title'].invalid}"
+      [ngClass]="{
+        'is-invalid':
+          formControls['title'].touched && formControls['title'].invalid,
+      }"
       required
     />
-    @if(formControls['title'].touched && formControls['title'].invalid) {
+    @if (formControls["title"].touched && formControls["title"].invalid) {
       <div class="error">
-        @if(formControls['title'].errors?.['required']){
+        @if (formControls["title"].errors?.["required"]) {
           <small>Title is required.</small>
         }
-        @if(formControls['title'].errors?.['minlength']){
+        @if (formControls["title"].errors?.["minlength"]) {
           <small>Title must be at least 5 characters long.</small>
         }
       </div>
@@ -24,15 +27,18 @@
     <textarea
       id="body"
       formControlName="body"
-      [ngClass]="{'is-invalid': formControls['body'].touched && formControls['body'].invalid}"
+      [ngClass]="{
+        'is-invalid':
+          formControls['body'].touched && formControls['body'].invalid,
+      }"
       required
     ></textarea>
-    @if(formControls['body'].touched && formControls['body'].invalid) {
+    @if (formControls["body"].touched && formControls["body"].invalid) {
       <div class="error">
-        @if(formControls['body'].errors?.['required']){
+        @if (formControls["body"].errors?.["required"]) {
           <small>Body is required.</small>
         }
-        @if(formControls['body'].errors?.['minlength']){
+        @if (formControls["body"].errors?.["minlength"]) {
           <small>Body must be at least 10 characters long.</small>
         }
       </div>

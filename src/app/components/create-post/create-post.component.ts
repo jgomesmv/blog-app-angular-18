@@ -19,11 +19,11 @@ export class CreatePostComponent {
   constructor(
     private formBuilder: FormBuilder,
     private postService: PostService,
-    private router: Router
+    private router: Router,
   ) {
     this.postForm = this.formBuilder.group({
       title: ['', [Validators.required, Validators.minLength(5)]],
-      body: ['', [Validators.required, Validators.minLength(10)]]
+      body: ['', [Validators.required, Validators.minLength(10)]],
     });
   }
 
@@ -41,7 +41,7 @@ export class CreatePostComponent {
     const newPost: Partial<Post> = {
       title: this.formControls['title'].value,
       body: this.formControls['body'].value,
-      userId: 1 // Assuming userId is required
+      userId: 1, // Assuming userId is required
     };
 
     this.postService.create(newPost).subscribe(() => {

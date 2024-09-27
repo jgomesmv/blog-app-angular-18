@@ -1,18 +1,24 @@
 <div class="post-list">
   <!-- Show loading message if posts array is empty -->
   @if (posts().length === 0) {
-    <div class="post-list__loading" >
+    <div class="post-list__loading">
       <p>Loading posts...</p>
     </div>
   }
 
   @for (post of posts(); track post.id) {
     <div class="post-list__item">
-      <img src="https://via.placeholder.com/400x200" alt="Post Image" class="post-list__image" />
+      <img
+        src="https://via.placeholder.com/400x200"
+        alt="Post Image"
+        class="post-list__image"
+      />
       <div class="post-list__content">
         <h2 class="post-list__title">{{ post.title }}</h2>
         <p class="post-list__body">{{ shortenBody(post.body) }}</p>
-        <a class="post-list__link" [routerLink]="['/post', post.id]">Read More</a>
+        <a class="post-list__link" [routerLink]="['/post', post.id]"
+          >Read More</a
+        >
       </div>
     </div>
   }

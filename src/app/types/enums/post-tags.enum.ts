@@ -3,5 +3,5 @@ export enum PostTag {
   Health = 'health',
   Lifestyle = 'lifestyle',
   Education = 'education',
-  Business = 'business'
+  Business = 'business',
 }
