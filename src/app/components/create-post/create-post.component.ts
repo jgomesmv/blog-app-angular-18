@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PostService } from '../../services/post.service';
 import { Router } from '@angular/router';
@@ -14,18 +14,14 @@ import { Post } from '../../types/models/post.model';
   imports: [CommonModule, ReactiveFormsModule],
 })
 export class CreatePostComponent {
-  postForm: FormGroup;
+  private formBuilder = inject(FormBuilder);
+  private postService = inject(PostService);
+  private router = inject(Router);
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private postService: PostService,
-    private router: Router,
-  ) {
-    this.postForm = this.formBuilder.group({
-      title: ['', [Validators.required, Validators.minLength(5)]],
-      body: ['', [Validators.required, Validators.minLength(10)]],
-    });
-  }
+  postForm: FormGroup = this.formBuilder.group({
+    title: ['', [Validators.required, Validators.minLength(5)]],
+    body: ['', [Validators.required, Validators.minLength(10)]],
+  });
 
   // Getter for easier access to form controls in template
   get formControls() {
@@ -41,7 +37,7 @@ export class CreatePostComponent {
     const newPost: Partial<Post> = {
       title: this.formControls['title'].value,
       body: this.formControls['body'].value,
-      userId: 1, // Assuming userId is required
+      userId: 1, // Assuming some userId form now
     };
 
     this.postService.create(newPost).subscribe(() => {
