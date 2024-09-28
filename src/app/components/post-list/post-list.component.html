@@ -1,25 +1,64 @@
-<div class="post-list">
+<div class="postList__controls">
+  <label class="postList__label" for="sortBy">Sort by:</label>
+  <select
+    id="sortBy"
+    class="postList__select"
+    (change)="changeSorting($event)"
+  >
+    <option value="title" [selected]="sortBy() === 'title'">Title</option>
+    <option value="userId" [selected]="sortBy() === 'userId'">User ID</option>
+    <option value="reactions" [selected]="sortBy() === 'reactions'">
+      Reactions
+    </option>
+  </select>
+
+  <label class="postList__label" for="order">Order:</label>
+  <select id="order" class="postList__select" (change)="changeOrder($event)">
+    <option value="asc" [selected]="order() === 'asc'">Ascending</option>
+    <option value="desc" [selected]="order() === 'desc'">Descending</option>
+  </select>
+</div>
+
+<div class="postList">
   <!-- Show loading message if posts array is empty -->
-  @if (posts().length === 0) {
-    <div class="post-list__loading">
+  @if (!posts()) {
+    <div class="postList__loading">
       <p>Loading posts...</p>
     </div>
-  }
-
-  @for (post of posts(); track post.id) {
-    <div class="post-list__item">
-      <img
-        src="https://via.placeholder.com/400x200"
-        alt="Post Image"
-        class="post-list__image"
-      />
-      <div class="post-list__content">
-        <h2 class="post-list__title">{{ post.title }}</h2>
-        <p class="post-list__body">{{ shortenBody(post.body) }}</p>
-        <a class="post-list__link" [routerLink]="['/post', post.id]"
-          >Read More</a
-        >
+  } @else {
+    @for (post of posts(); track post.id) {
+      <div class="postList__item">
+        <img
+          src="https://via.placeholder.com/400x200"
+          alt="Post Image"
+          class="postList__image"
+        />
+        <div class="postList__content">
+          <h2 class="postList__title">{{ post.title }}</h2>
+          <p class="postList__body">{{ shortenBody(post.body) }}</p>
+          <a class="postList__link" [routerLink]="['/post', post.id]">Read More</a>
+        </div>
       </div>
-    </div>
+    }
   }
+</div>
+
+<div class="postList__pagination">
+  <button
+    class="postList____paginationButton"
+    (click)="loadPreviousPage()"
+    [disabled]="skip() === 0"
+  >
+    Previous
+  </button>
+  <span class="postList__paginationInfo">
+    Page {{ currentPage() }} of {{ totalPages() }}
+  </span>
+  <button
+    class="postList__paginationButton"
+    (click)="loadNextPage()"
+    [disabled]="skip() + limit() >= totalPosts()"
+  >
+    Next
+  </button>
 </div>

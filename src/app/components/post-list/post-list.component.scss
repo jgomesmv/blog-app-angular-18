@@ -1,10 +1,38 @@
-.post-list {
+.postList {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   padding: 20px;
 
-  &__loading {
+  &__controls {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+
+  &__label {
+    font-size: 1rem;
+    color: #333;
+    font-weight: bold;
+  }
+
+  &__select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #fff;
+    transition: border-color 0.2s;
+
+    &:hover {
+      border-color: #007bff;
+    }
+  }
+
+  &--loading {
     width: 100%;
     text-align: center;
     font-size: 1.5rem;
@@ -50,6 +78,38 @@
 
     &:hover {
       color: #0056b3;
+    }
+  }
+
+  &__pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  &__paginationInfo {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  &__paginationButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
     }
   }
 }
