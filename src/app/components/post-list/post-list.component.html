@@ -1,4 +1,4 @@
-<div class="postList__controls">
+<section class="postList__controls">
   <label class="postList__label" for="sortBy">Sort by:</label>
   <select
     id="sortBy"
@@ -17,9 +17,9 @@
     <option value="asc" [selected]="order() === 'asc'">Ascending</option>
     <option value="desc" [selected]="order() === 'desc'">Descending</option>
   </select>
-</div>
+</section>
 
-<div class="postList">
+<section class="postList">
   <!-- Show loading message if posts array is empty -->
   @if (!posts()) {
     <div class="postList__loading">
@@ -27,23 +27,23 @@
     </div>
   } @else {
     @for (post of posts(); track post.id) {
-      <div class="postList__item">
+      <article class="postList__item">
         <img
           src="https://via.placeholder.com/400x200"
           alt="Post Image"
           class="postList__image"
         />
-        <div class="postList__content">
+        <section class="postList__content">
           <h2 class="postList__title">{{ post.title }}</h2>
           <p class="postList__body">{{ shortenBody(post.body) }}</p>
           <a class="postList__link" [routerLink]="['/post', post.id]">Read More</a>
-        </div>
-      </div>
+        </section>
+      </article>
     }
   }
-</div>
+</section>
 
-<div class="postList__pagination">
+<section class="postList__pagination">
   <button
     class="postList____paginationButton"
     (click)="loadPreviousPage()"
@@ -61,4 +61,4 @@
   >
     Next
   </button>
-</div>
+</section>
