@@ -1,0 +1,47 @@
+.postDetailComment {
+  display: flex;
+  align-items: flex-start;
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+  }
+
+  &__avatar {
+    margin-right: 15px;
+    flex-shrink: 0;
+  }
+
+  &__avatarImage {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #007bff;
+  }
+
+  &__content {
+    flex: 1;
+  }
+
+  &__userName {
+    margin: 0; // Reset browser default margins
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+
+  &__comment {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+  }
+}
