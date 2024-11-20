@@ -1,12 +1,19 @@
 <!-- Show the post details if the post is available using @if -->
 @if (post(); as postDetail) {
-  <div class="post-detail">
+  <article class="post-detail">
     <h1 class="post-detail__title">{{ postDetail.title }}</h1>
     <p class="post-detail__body">{{ postDetail.body }}</p>
-  </div>
+  </article>
 } @else {
   <!-- Show loading state while post is being fetched -->
-  <div class="post-detail__loading">
+  <article class="post-detail__loading">
     <p>Loading post details...</p>
-  </div>
+  </article>
 }
+
+<article class="post-detail__comments">
+  <h2>Comments:</h2>
+  @for (postComment of postComments(); track postComment.id) {
+    <app-post-detail-comment [postDetailComment]="postComment"/>
+  }
+</article>

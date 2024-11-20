@@ -22,4 +22,10 @@
     color: #888;
     text-align: center;
   }
+
+  &__comments {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
 }
