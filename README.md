@@ -1,6 +1,15 @@
 # BlogApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.6.
+- This project is a modern blogging application built using Angular v18 and styled with SCSS. It allows users to view, sort, and interact with blog posts and comments in an intuitive UI.
+- It uses the dummyjson api. More info check [dummyjson posts api docs](https://dummyjson.com/docs/posts) page.
+
+## Features
+
+- **Post List**: View a list of blog posts with sorting and pagination.
+- **Post Detail View**: Display detailed information about a specific post.
+- **Post Detail Comment**: View comments for each post styled as a card list.
+- **Create Post**: Add new post.
+
 
 ## Development server
 
@@ -14,14 +23,24 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## Folder Structure
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- `src/app` – Core application logic.
+  - `components/` – Contains reusable UI components (e.g., `PostList`, `PostDetailComment`).
+  - `services/` – Contains services for business logic api calls.
+  - `types/` – Contains types for TypeScript.
 
-## Running end-to-end tests
+## Technologies Used
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- **Angular CLI**: Version 18.2.6
+- **Signals**: New Angular's reactive state management feature
+- **Control Flow**: New Angular's DOM manipulation feature
+- **SCSS**: For styling
+- **RxJS**: Reactive state management
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+To get more help on the Angular check out the [Angular Docs](https://angular.dev) page.
+
+---
+Happy coding!
